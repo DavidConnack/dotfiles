@@ -23,9 +23,9 @@ if [ ! -d "$DOTFILES_DIR/.git" ]; then
 fi
 cd "$DOTFILES_DIR"
 
-# Apps + font
-brew install tmux
-brew install --cask ghostty zed font-jetbrains-mono-nerd-font mac-mouse-fix maccy
+# Apps + fonts (idempotent; keeps going if individual entries fail)
+brew bundle install --file="$DOTFILES_DIR/Brewfile" || \
+  echo "⚠️  Some Brewfile entries failed. Continuing — re-run init.sh to retry."
 
 # oh-my-zsh (unattended: skips chsh and skips launching zsh)
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
