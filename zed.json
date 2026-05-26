@@ -1,0 +1,75 @@
+{
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false
+  },
+  "auto_update": false,
+  "cli_default_open_behavior": "existing_window",
+  "project_panel": {
+    "dock": "left"
+  },
+  "outline_panel": {
+    "dock": "right"
+  },
+  "collaboration_panel": {
+    "dock": "right"
+  },
+  "git_panel": {
+    "dock": "right"
+  },
+  "session": {
+    "trust_all_worktrees": true,
+  },
+  "agent_servers": {
+    "gemini": {
+      "type": "registry",
+    },
+    "claude-acp": {
+      "default_config_options": {
+        "mode": "auto"
+      },
+      "favorite_config_option_values": {
+        "effort": [
+          "medium"
+        ]
+      },
+      "type": "registry",
+      "env": {
+        "CLAUDE_CODE_EXECUTABLE": "/opt/homebrew/bin/claude",
+      },
+    },
+  },
+  "edit_predictions": {
+    "mode": "eager",
+  },
+  "agent": {
+    "dock": "right",
+    "default_profile": "ask",
+    "tool_permissions": {
+      "default": "allow",
+    },
+    "default_model": {
+      "provider": "amazon-bedrock",
+      "model": "claude-opus-4-6",
+    },
+    "model_parameters": [],
+  },
+  "ui_font_size": 16,
+  "buffer_font_size": 15,
+  "theme": {
+    "mode": "system",
+    "light": "One Light",
+    "dark": "One Dark",
+  },
+  "vim_mode": true,
+  "file_types": {
+    "Helm": [
+      "**/templates/**/*.tpl",
+      "**/templates/**/*.yaml",
+      "**/templates/**/*.yml",
+      "**/helmfile.d/**/*.yaml",
+      "**/helmfile.d/**/*.yml",
+      "*.tftpl",
+    ],
+  },
+}
