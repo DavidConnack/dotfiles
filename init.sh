@@ -16,10 +16,13 @@ if ! command -v brew >/dev/null 2>&1; then
 fi
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-# Clone repo if not already present (so symlinks have a stable target)
+# Clone repo if not already present, otherwise fast-forward to latest
 if [ ! -d "$DOTFILES_DIR/.git" ]; then
   mkdir -p "$(dirname "$DOTFILES_DIR")"
   git clone "$REPO_URL" "$DOTFILES_DIR"
+else
+  git -C "$DOTFILES_DIR" pull --ff-only --quiet || \
+    echo "⚠️  Could not fast-forward $DOTFILES_DIR — using current local state"
 fi
 cd "$DOTFILES_DIR"
 
