@@ -5,7 +5,7 @@ export PATH="/opt/homebrew/opt/python@3.13/libexec/bin:$PATH"
 
 ZSH_THEME="robbyrussell"
 plugins=(git kubectl)
-if [[ -z $ZED_TERM ]]; then
+if [[ -z $ZED_TERM && -t 1 ]]; then
   plugins+=('tmux')
   ZSH_TMUX_AUTOSTART=true
 fi
