@@ -44,6 +44,18 @@ ln -sf "$DOTFILES_DIR/tmux.conf" ~/.tmux.conf
 ln -sf "$DOTFILES_DIR/zed.json" ~/.config/zed/settings.json
 ln -sf "$DOTFILES_DIR/ghostty.config" ~/.config/ghostty/config
 
+# Touch ID for sudo (incl. tmux). Render with this machine's brew prefix and
+# install only if changed, so re-runs don't trigger a needless sudo prompt.
+if [ -f "$DOTFILES_DIR/pam/sudo_local" ]; then
+  rendered="$(sed "s#/opt/homebrew/lib/pam/pam_reattach.so#$(brew --prefix)/lib/pam/pam_reattach.so#" "$DOTFILES_DIR/pam/sudo_local")"
+  if ! diff -q <(printf '%s\n' "$rendered") /etc/pam.d/sudo_local >/dev/null 2>&1; then
+    echo "→ Installing /etc/pam.d/sudo_local (Touch ID for sudo). You may be prompted for your password."
+    printf '%s\n' "$rendered" | sudo tee /etc/pam.d/sudo_local >/dev/null
+    sudo chmod 444 /etc/pam.d/sudo_local
+    sudo chown root:wheel /etc/pam.d/sudo_local
+  fi
+fi
+
 echo
 echo "✓ Done. Restart your shell, or run: source ~/.zshrc"
 echo "  Note: remote is HTTPS. To push, switch to SSH:"

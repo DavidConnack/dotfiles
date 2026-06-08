@@ -1,0 +1,3 @@
+# Touch ID for sudo. pam_reattach (first) makes it work inside tmux/screen.
+auth       optional       /opt/homebrew/lib/pam/pam_reattach.so
+auth       sufficient     pam_tid.so
