@@ -39,7 +39,8 @@ fi
 mkdir -p ~/.config/zed ~/.config/ghostty
 
 ln -sf "$DOTFILES_DIR/zshrc" ~/.zshrc
-ln -sf "$DOTFILES_DIR/tmux" ~/.tmux
+# -n so re-runs don't create ~/.tmux/tmux when ~/.tmux already links to the dir
+ln -sfn "$DOTFILES_DIR/tmux" ~/.tmux
 ln -sf "$DOTFILES_DIR/tmux.conf" ~/.tmux.conf
 ln -sf "$DOTFILES_DIR/zed.json" ~/.config/zed/settings.json
 ln -sf "$DOTFILES_DIR/ghostty.config" ~/.config/ghostty/config
